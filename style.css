@@ -9,6 +9,13 @@
 .header {
   border-bottom: 1px solid black;
   padding-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+
+.mainContainer {
+  display: flex;
 }
 
 .keywords {
@@ -21,4 +28,24 @@
   width: 100px;
   padding: 5px;
   margin: 2px;
+}
+
+.searches {
+  display: flex;
+  justify-content: space-around;
+}
+
+.h1 {
+  align-self: center;
+  font-size: 10vh;
+}
+
+.sidebar {
+  /* border: 1px solid black; */
+  width: 25vw;
+}
+
+.stockInfo {
+  /* border: 1px solid black; */
+  width: 75vw;
 }

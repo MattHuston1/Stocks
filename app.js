@@ -54,40 +54,6 @@ searchButton.addEventListener('click', function () {
     })
 })
 
-function stockInfo(myJSON) {
-  var gloQuo = myJSON['Global Quote']
-
-  symbolName.textContent = gloQuo['01. symbol']
-  curPrice.textContent = 'Price: $' + commasToFixed(gloQuo['05. price'])
-  change.textContent = 'Change: '
-  actChange.textContent = commasToFixed(gloQuo['09. change'])
-  if (gloQuo['09. change'] < 0) {
-    actChange.style.color = 'red'
-  } else if (gloQuo['09. change'] = 0) {
-    console.log('no change')
-  } else {
-    actChange.style.color = 'green'
-  }
-
-  changePer.textContent = 'Change: '
-  var perChange = commasToFixed(gloQuo['10. change percent']).slice(0, -1)
-  actChangePer.textContent = perChange + '%'
-  if (perChange < 0) {
-    actChangePer.style.color = 'red'
-  } else if (perChange = 0) {
-    console.log('no change')
-  } else {
-    actChangePer.style.color = 'green'
-  }
-
-  open.textContent = 'Open: $' + commasToFixed(gloQuo['02. open'])
-  high.textContent = 'High: $' + commasToFixed(gloQuo['03. high'])
-  low.textContent = 'Low: $' + commasToFixed(gloQuo['04. low'])
-  preClo.textContent = 'Previous Close: $' + commasToFixed(gloQuo['08. previous close'])
-  volume.textContent = 'Volume: ' + commaNumber(gloQuo['06. volume'])
-
-}
-
 keywordSearchButton.addEventListener('click', function () {
 
   keyword = keywordSearch.value
@@ -123,10 +89,10 @@ function matches(myJSON) {
 }
 
 function selectedStock(event) {
-  console.log(event)
-  console.log(event.target.innerText)
   var stockSym = event.target.innerText
+  console.log(stockSym)
   let globalQuoteAPI = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stockSym}&apikey=E1212UXCJTFEJQRK`
+  console.log(globalQuoteAPI)
   
   fetch(globalQuoteAPI)
   .then(response => response.json())
@@ -134,4 +100,37 @@ function selectedStock(event) {
     console.log(myJSON['Global Quote'])
     stockInfo(myJSON)
   })
+}
+
+function stockInfo(myJSON) {
+  var gloQuo = myJSON['Global Quote']
+
+  symbolName.textContent = gloQuo['01. symbol']
+  curPrice.textContent = 'Price: $' + commasToFixed(gloQuo['05. price'])
+  change.textContent = 'Change: '
+  actChange.textContent = commasToFixed(gloQuo['09. change'])
+  if (gloQuo['09. change'] < 0) {
+    actChange.style.color = 'red'
+  } else if (gloQuo['09. change'] = 0) {
+    console.log('no change')
+  } else {
+    actChange.style.color = 'green'
+  }
+
+  changePer.textContent = 'Change: '
+  var perChange = commasToFixed(gloQuo['10. change percent']).slice(0, -1)
+  actChangePer.textContent = perChange + '%'
+  if (perChange < 0) {
+    actChangePer.style.color = 'red'
+  } else if (perChange = 0) {
+    console.log('no change')
+  } else {
+    actChangePer.style.color = 'green'
+  }
+
+  open.textContent = 'Open: $' + commasToFixed(gloQuo['02. open'])
+  high.textContent = 'High: $' + commasToFixed(gloQuo['03. high'])
+  low.textContent = 'Low: $' + commasToFixed(gloQuo['04. low'])
+  preClo.textContent = 'Previous Close: $' + commasToFixed(gloQuo['08. previous close'])
+  volume.textContent = 'Volume: ' + commaNumber(gloQuo['06. volume'])
 }
