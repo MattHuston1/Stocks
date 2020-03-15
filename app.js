@@ -82,16 +82,20 @@ function matches(myJSON) {
     console.log(element['1. symbol'])
     var eachSym = document.createElement('button')
     eachSym.setAttribute('class', 'eachKeyword')
-    eachSym.textContent = element['1. symbol']
+    eachSym.textContent = element['1. symbol'] + ' ' + element['2. name']
     keywords.appendChild(eachSym)
     eachSym.addEventListener('click', selectedStock)
   })
 }
 
 function selectedStock(event) {
+
   var stockSym = event.target.innerText
+  var splitStockSym = stockSym.split(' ', 1)
   console.log(stockSym)
-  let globalQuoteAPI = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stockSym}&apikey=E1212UXCJTFEJQRK`
+  console.log(stockSym.split())
+  console.log(stockSym.split(' ', 1))
+  let globalQuoteAPI = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${splitStockSym}&apikey=E1212UXCJTFEJQRK`
   console.log(globalQuoteAPI)
   
   fetch(globalQuoteAPI)
@@ -108,7 +112,7 @@ function stockInfo(myJSON) {
   symbolName.textContent = gloQuo['01. symbol']
   curPrice.textContent = 'Price: $' + commasToFixed(gloQuo['05. price'])
   change.textContent = 'Change: '
-  actChange.textContent = commasToFixed(gloQuo['09. change'])
+  actChange.textContent = '$' + commasToFixed(gloQuo['09. change'])
   if (gloQuo['09. change'] < 0) {
     actChange.style.color = 'red'
   } else if (gloQuo['09. change'] = 0) {
