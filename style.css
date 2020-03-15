@@ -6,3 +6,19 @@
   display: flex;
 }
 
+.header {
+  border-bottom: 1px solid black;
+  padding-bottom: 5px;
+}
+
+.keywords {
+  display: flex;
+  flex-direction: column;
+  padding-top: 5px;
+}
+
+.eachKeyword {
+  width: 100px;
+  padding: 5px;
+  margin: 2px;
+}
