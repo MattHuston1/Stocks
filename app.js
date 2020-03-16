@@ -92,9 +92,7 @@ function selectedStock(event) {
 
   var stockSym = event.target.innerText
   var splitStockSym = stockSym.split(' ', 1)
-  console.log(stockSym)
-  console.log(stockSym.split())
-  console.log(stockSym.split(' ', 1))
+
   let globalQuoteAPI = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${splitStockSym}&apikey=E1212UXCJTFEJQRK`
   console.log(globalQuoteAPI)
   
@@ -137,4 +135,20 @@ function stockInfo(myJSON) {
   low.textContent = 'Low: $' + commasToFixed(gloQuo['04. low'])
   preClo.textContent = 'Previous Close: $' + commasToFixed(gloQuo['08. previous close'])
   volume.textContent = 'Volume: ' + commaNumber(gloQuo['06. volume'])
+}
+
+keywordSearch.onkeyup = function () {
+  console.log(keywordSearch.value)
+
+  keyword = keywordSearch.value
+
+  let symbolSearchAPI = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${keyword}&apikey=E1212UXCJTFEJQRK`
+
+  fetch(symbolSearchAPI)
+  .then(response => response.json())
+  .then(myJSON => {
+    console.log(myJSON)
+    // stockInfo(myJSON)
+  })
+
 }
