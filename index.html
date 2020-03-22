@@ -14,20 +14,24 @@
   <header class="header">
     <h1 class="h1">Stocks</h1>
     <div class="searches">
-      <div class="searchBySymbolContainer">
-        <h3>Search Stock by Symbol</h3>
-        <input class="symbolSearch" type="text">
-        <button class="searchButton">Search</button>
-      </div>
       <div class="searchByKeyword">
-        <h3>Search Stock by Keyword</h3>
+        <h3 class="searchText">Search Stock by Keyword</h3>
         <input class="keywordSearch" type="text">
         <button class="keywordSearchButton">Search</button>
+      </div>
+      <div class="searchBySymbolContainer">
+        <h3 class="searchText">Search Stock by Symbol</h3>
+        <input class="symbolSearch" type="text">
+        <button class="searchButton">Search</button>
       </div>
     </div>
   </header>
 
   <main class="mainContainer">
+    <div class="sidebar">
+      <div class="keywords">
+      </div>
+    </div>
     <div class="stockInfo">
       <h1 class="symbolName"></h1>
       <h3 class="curPrice"></h3>
@@ -44,10 +48,6 @@
       <h3 class="low"></h3>
       <h3 class="preClo"></h3>
       <h3 class="volume"></h3>
-    </div>
-    <div class="sidebar">
-      <div class="keywords">
-      </div>
     </div>
   </main>
   
