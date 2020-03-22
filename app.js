@@ -27,7 +27,6 @@ function commasToFixed(x) {
 
 function commaNumber(x) {
   return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-
 }
 
 searchButton.addEventListener('click', function () {
@@ -56,9 +55,8 @@ searchButton.addEventListener('click', function () {
     })
 })
 
-// keywordSearchButton.addEventListener('click', function () {
-keywordSearch.onkeyup = function () {
-
+function keySearch() {
+  
   keyword = keywordSearch.value
   console.log(keywordSearch.value)
   console.log(keyword + 'keyword')
@@ -70,23 +68,26 @@ keywordSearch.onkeyup = function () {
     // keywords.removeChild(document.querySelector('.eachKeyword'))
     keywords.textContent = ''
   }
-    
-    let globalQuoteAPI = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=E1212UXCJTFEJQRK`
-    let symbolSearchAPI = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${keyword}&apikey=E1212UXCJTFEJQRK`
-    let timeSeriesIntraAPI = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=E1212UXCJTFEJQRK`
-    let timeSeriesDailyAPI = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=E1212UXCJTFEJQRK`
-    let timeSeriesDailyAdjustAPI = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=E1212UXCJTFEJQRK`
-    console.log(symbolSearchAPI)
-    
-    
-    fetch(symbolSearchAPI)
-    .then(response => response.json())
-    .then(myJSON => {
-      console.log(myJSON)
-      matches(myJSON)
-    })
-
+  
+  let globalQuoteAPI = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=E1212UXCJTFEJQRK`
+  let symbolSearchAPI = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${keyword}&apikey=E1212UXCJTFEJQRK`
+  let timeSeriesIntraAPI = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=E1212UXCJTFEJQRK`
+  let timeSeriesDailyAPI = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=E1212UXCJTFEJQRK`
+  let timeSeriesDailyAdjustAPI = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=E1212UXCJTFEJQRK`
+  console.log(symbolSearchAPI)
+  
+  
+  fetch(symbolSearchAPI)
+  .then(response => response.json())
+  .then(myJSON => {
+    console.log(myJSON)
+    matches(myJSON)
+  })
 }
+
+keywordSearchButton.onclick = keySearch
+keywordSearch.onkeyup = keySearch
+  
 
 
 
@@ -119,11 +120,7 @@ function selectedStock(event) {
     })
     .catch(error => {
       console.log(error)
-      // var error = document.createElement('h1')
-      // error.textContent = 'API allows 5 calls per minute. Sorry for the inconvenience.'
-      // keywords.appendChild(error)
       stockInformation.textContent = 'API allows only 5 calls per minute. Try again in a moment. Sorry for the inconvenience.'
-      // symbolName.textContent = 'API allows only 5 calls per minute. Sorry for the inconvenience.'
     })
 }
 
